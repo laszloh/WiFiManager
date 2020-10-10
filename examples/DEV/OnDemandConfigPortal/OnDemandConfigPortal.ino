@@ -22,6 +22,7 @@ unsigned long mtime = 0;
 
 WiFiManager wm;
 
+
 // TEST OPTION FLAGS
 bool TEST_CP         = true; // always start the configportal, even if ap found
 int  TESP_CP_TIMEOUT = 90; // test cp timeout
@@ -29,7 +30,6 @@ int  TESP_CP_TIMEOUT = 90; // test cp timeout
 bool TEST_NET        = true; // do a network test after connect, (gets ntp time)
 bool ALLOWONDEMAND   = true; // enable on demand
 int  ONDDEMANDPIN    = 0; // gpio for button
-
 
 // char ssid[] = "*************";  //  your network SSID (name)
 // char pass[] = "********";       // your network password

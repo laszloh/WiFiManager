@@ -36,6 +36,7 @@ const char * const HTTP_PORTAL_MENU[] PROGMEM = {
 "<form action='/restart' method='get'><button>Restart</button></form><br/>\n",// MENU_RESTART
 "<form action='/exit'    method='get'><button>Exit</button></form><br/>\n",  // MENU_EXIT
 "<form action='/erase'   method='get'><button class='D'>Erase</button></form><br/>\n", // MENU_ERASE
+"<form action='/update'  method='get'><button>Update</button></form><br/>\n",// MENU_UPDATE
 "<hr><br/>" // MENU_SEP
 };
 
@@ -113,6 +114,8 @@ const char HTTP_HELP[]             PROGMEM =
  "<td>Parameter page</td></tr>"
  "<tr><td><a href='/info'>/info</a></td>"
  "<td>Information page</td></tr>"
+ "<tr><td><a href='/u'>/u</a></td>"
+ "<td>OTA Update</td></tr>"
  "<tr><td><a href='/close'>/close</a></td>"
  "<td>Close the captiveportal popup,configportal will remain active</td></tr>"
  "<tr><td><a href='/exit'>/exit</a></td>"
@@ -123,6 +126,11 @@ const char HTTP_HELP[]             PROGMEM =
  "<td>Erase WiFi configuration and reboot Device. Device will not reconnect to a network until new WiFi configuration data is entered.</td></tr>"
  "</table>"
  "<p/>More information about WiFiManager at <a href='https://github.com/tzapu/WiFiManager'>https://github.com/tzapu/WiFiManager</a>.";
+
+#ifdef JSTEST
+const char HTTP_UPDATE[] PROGMEM = "Upload New Firmware<br/><form method='POST' action='u' enctype='multipart/form-data' onchange=\"(function(el){document.getElementById('uploadbin').style.display = el.value=='' ? 'none' : 'initial';})(this)\"><input type='file' name='update' accept='.bin,application/octet-stream'><button id='uploadbin' type='submit' class='h D'>Update</button></form><small><a href='http://192.168.4.1/update' target='_blank'>* May not function inside captive portal, Open in browser http://192.168.4.1</a><small>";
+const char HTTP_UPDATE_FAIL[] PROGMEM = "<div class='msg D'><strong>Update Failed!</strong><Br/>Reboot device and try again</div>";
+const char HTTP_UPDATE_OK[] PROGMEM = "<div class='msg P'><strong>Update OK!</strong> Device Rebooting now...</div>";
 
 #ifdef WM_JSTEST
 const char HTTP_JS[] PROGMEM = 
@@ -226,8 +234,8 @@ const char D_HR[]                 PROGMEM = "--------------------";
 // -----------------------------------------------------------------------------------------------
 // DO NOT EDIT BELOW THIS LINE
 
-const uint8_t _nummenutokens = 9;
-const char * const _menutokens[9] PROGMEM = {
+const uint8_t _nummenutokens = 10;
+const char * const _menutokens[10] PROGMEM = {
     "wifi",
     "wifinoscan",
     "info",
@@ -236,6 +244,7 @@ const char * const _menutokens[9] PROGMEM = {
     "restart",
     "exit",
     "erase",
+    "update",
     "sep"
 };
 
@@ -251,6 +260,8 @@ const char R_exit[]               PROGMEM = "/exit";
 const char R_close[]              PROGMEM = "/close";
 const char R_erase[]              PROGMEM = "/erase"; 
 const char R_status[]             PROGMEM = "/status";
+const char R_update[]             PROGMEM = "/update";
+const char R_updatedone[]         PROGMEM = "/u";
 
 
 //Strings
