@@ -181,6 +181,15 @@ int WiFiManager::getParametersCount() {
 }
 
 /**
+ * [saveParameters description]
+ * @access public
+ */
+void WiFiManager::saveParameters() {
+  for(int i=0;i<_paramsCount;i++)
+    _params[i]->saveParameter();
+}
+
+/**
  * --------------------------------------------------------------------------------
  *  WiFiManager 
  * --------------------------------------------------------------------------------

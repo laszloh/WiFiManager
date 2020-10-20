@@ -128,6 +128,7 @@ class WiFiManagerParameter {
     int         getLabelPlacement();
     const char *getCustomHTML();
     void        setValue(const char *defaultValue, int length);
+    virtual void saveParameter() { /* empty default implementation */ }
 
   protected:
     void init(const char *id, const char *label, const char *defaultValue, int length, const char *custom, int labelPlacement);
@@ -197,6 +198,9 @@ class WiFiManager
 
     // returns the Parameters Count
     int           getParametersCount();
+
+    // call the saveParameter for all registered WiFiManagerParameter
+    void          saveParameters();
 
     // SET CALLBACKS
 
