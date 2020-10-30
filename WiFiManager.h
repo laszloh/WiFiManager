@@ -128,6 +128,7 @@ class WiFiManagerParameter {
     int         getLabelPlacement();
     const char *getCustomHTML();
     void        setValue(const char *defaultValue, int length);
+    virtual void saveParameter() { }
 
   protected:
     void init(const char *id, const char *label, const char *defaultValue, int length, const char *custom, int labelPlacement);
