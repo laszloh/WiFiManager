@@ -106,7 +106,13 @@
 #define WFM_NO_LABEL 0
 
 class WiFiManagerParameter {
-  public:
+  public:    
+    enum Type {
+        StringType,
+        IntegerType,
+        FloatType
+    };
+
     /** 
         Create custom parameters that can be added to the WiFiManager setup web page
         @id is used for HTTP queries and must not contain spaces nor other special characters
@@ -128,7 +134,7 @@ class WiFiManagerParameter {
     int         getLabelPlacement();
     const char *getCustomHTML();
     void        setValue(const char *defaultValue, int length);
-    virtual void saveParameter() { }
+    Type&       type() { return _type; }
 
   protected:
     void init(const char *id, const char *label, const char *defaultValue, int length, const char *custom, int labelPlacement);
@@ -141,6 +147,7 @@ class WiFiManagerParameter {
     int         _length;
     int         _labelPlacement;
     const char *_customHTML;
+    Type        _type;
     friend class WiFiManager;
 };
 
